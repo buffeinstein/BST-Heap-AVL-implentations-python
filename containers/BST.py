@@ -8,10 +8,9 @@ from containers.BinaryTree import BinaryTree, Node
 
 class BST(BinaryTree):
     '''
-    FIXME:
-    BST is currently not a subclass of BinaryTree.
-    You should make the necessary changes in the class declaration line above
-    and in the constructor below.
+    The BST is a superclass of BinaryTree.
+    That means that the BST class "inherits" all of the methods from BinaryTree,
+    and we don't have to reimplement them.
     '''
 
     def __init__(self, xs=None):
@@ -57,8 +56,6 @@ class BST(BinaryTree):
         '''
         FIXME:
         Implement this method.
-        The lecture videos have the exact code you need,
-        except that their method is an instance method when it should have been a static method.
         '''
         ret = True
         if node.left:
@@ -87,8 +84,6 @@ class BST(BinaryTree):
         '''
         FIXME:
         Implement this function.
-        The lecture videos have the exact code you need,
-        except that their method is an instance method when it should have been a static method.
         '''
         if value < node.value:
             if node.left is None:
@@ -112,6 +107,9 @@ class BST(BinaryTree):
             self.insert(x)
 
     def __contains__(self, value):
+        '''
+        Recall that `x in tree` desugars to `tree.__contains__(x)`.
+        '''
         return self.find(value)
 
     def find(self, value):
@@ -129,8 +127,6 @@ class BST(BinaryTree):
         '''
         FIXME:
         Implement this function.
-        The lecture videos have the exact code you need,
-        except that their method is an instance method when it should have been a static method.
         '''
         if value > node.value and node.right:
             return BST._find(value, node.right)
@@ -145,8 +141,6 @@ class BST(BinaryTree):
 
         FIXME:
         Implement this function.
-        This function is not implemented in the lecture notes,
-        but if you understand the structure of a BST it should be easy to implement.
 
         HINT:
         Create a recursive staticmethod helper function,
@@ -171,8 +165,6 @@ class BST(BinaryTree):
 
         FIXME:
         Implement this function.
-        This function is not implemented in the lecture notes,
-        but if you understand the structure of a BST it should be easy to implement.
 
         HINT:
         Create a recursive staticmethod helper function.
@@ -196,9 +188,7 @@ class BST(BinaryTree):
         If value is not in the BST, it does nothing.
 
         FIXME:
-        implement this function.
-        There is no code given in any of the lecture videos on how to implement this function,
-        but the video by HMC prof Colleen Lewis explains the algorithm.
+        Implement this function.
 
         HINT:
         You must have find_smallest/find_largest working correctly

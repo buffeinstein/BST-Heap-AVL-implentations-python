@@ -127,16 +127,16 @@ def test__BinaryTree_height3():
 
 
 def test__BinaryTree_size0():
-    assert _example0.size() == 0
+    assert _example0.__len__() == 0
 
 def test__BinaryTree_size1():
-    assert _example1.size() == 5
+    assert _example1.__len__() == 5
 
 def test__BinaryTree_size2():
-    assert _example2.size() == 15
+    assert _example2.__len__() == 15
 
 def test__BinaryTree_size3():
-    assert _example3.size() == 32
+    assert _example3.__len__() == 32
 
 
 def test__BinaryTree_len0():

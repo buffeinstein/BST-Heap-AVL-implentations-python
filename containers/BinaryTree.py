@@ -15,8 +15,8 @@ class Node():
 
     def __init__(self, value, left=None, right=None):
         self.value = value
-        self.left = left
-        self.right = right
+        self.left = left    # NOTE: left should always be a Node
+        self.right = right  # NOTE: right should always be a Node
 
     def __str__(self):
         ret = '('
@@ -78,9 +78,7 @@ class BinaryTree():
 
     def preorder_print(self, start, traversal):
         '''
-        FIXME:
-        Implement this function.
-        The lecture notes videos provide the exact code you need.
+        Prints the nodes using a preorder traversal.
         '''
         if start:
             traversal += str(start.value) + '-'
@@ -90,9 +88,7 @@ class BinaryTree():
 
     def inorder_print(self, start, traversal):
         '''
-        FIXME:
-        Implement this function.
-        The lecture notes videos provide the exact code you need.
+        Prints the nodes using a inorder traversal.
         '''
         if start:
             traversal = self.inorder_print(start.left, traversal)
@@ -102,9 +98,7 @@ class BinaryTree():
 
     def postorder_print(self, start, traversal):
         '''
-        FIXME:
-        Implement this function.
-        The lecture notes videos provide the exact code you need.
+        Prints the nodes using a postorder traversal.
         '''
         if start:
             traversal = self.postorder_print(start.left, traversal)
@@ -170,45 +164,26 @@ class BinaryTree():
 
     def __len__(self):
         '''
-        The lecture notes videos provide a recursive and an iterative version of a "size" function
-        which behaves the same as the __len__ function is supposed to.
-        You may copy that code here exactly.
-        We are using the dunder method __len__ because that will allow us to use the len() function
-        on our BinaryTree instances.
+        Returns the number of elements contained in the tree.
+        Recall that `tree.__len__()` will desugar to `size(len)`.
         '''
-        return self.size_(self.root)
+        return BinaryTree.__len__helper(self.root)
 
-    def size(self):
+    @staticmethod
+    def __len__helper(node):
         '''
         FIXME:
         Implement this function.
-        The lecture notes videos provide the exact code you need.
-        '''
-        if self.root is None:
-            return 0
-        stack = [self.root]
-        size = 1
-        while stack:
-            node = stack.pop()
-            if node.left:
-                size += 1
-                stack.append(node.left)
-            if node.right:
-                size += 1
-                stack.append(node.right)
-        return size
-
-    def size_(self, node):
-        '''
-        FIXME:
-        Implement this function.
-        The lecture notes videos provide the exact code you need.
         '''
         if node is None:
             return 0
-        return 1 + self.size_(node.left) + self.size_(node.right)
+        return 1 + BinaryTree.__len__helper(node.left) + BinaryTree.__len__helper(node.right)
 
     def height(self):
+        '''
+        Returns the height of the tree.
+        Recall that the height is the maximum length from the root to a leaf node.
+        '''
         return BinaryTree._height(self.root)
 
     @staticmethod
@@ -216,12 +191,6 @@ class BinaryTree():
         '''
         FIXME:
         Implement this function.
-
-        The lecture notes videos provide (almost) the exact code you need.
-        In the video, the function is not implemented as a static function,
-        and so the self argument is passed in as the first argument of height.
-        This makes it inconvenient to use,
-        and so you should implement it as a static method.
         '''
         if node is None:
             return -1
