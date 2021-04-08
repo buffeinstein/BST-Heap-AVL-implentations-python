@@ -44,17 +44,35 @@ class BST(BinaryTree):
         the structure obeys all of its laws.
         This makes it possible to automatically test whether insert/delete functions
         are actually working.
-
-        FIXME:
-        Implement this function.
         '''
+        if self.root:
+            return BST._is_bst_satisfied(self.root)
+        return True
 
     @staticmethod
     def _is_bst_satisfied(node):
         '''
         FIXME:
-        Implement this method.
+        The current implementation has a bug:
+        it only checks if the children of the current node are less than/greater than,
+        rather than ensuring that all nodes to the left/right are less than/greater than.
+
+        HINT:
+        Use the _find_smallest and _find_largest functions to fix the bug.
+        You should use the _ prefixed methods because those are static methods just like this one.
         '''
+        ret = True
+        if node.left:
+            if node.value >= node.left.value:
+                ret &= BST._is_bst_satisfied(node.left)
+            else:
+                ret = False
+        if node.right:
+            if node.value <= node.right.value:
+                ret &= BST._is_bst_satisfied(node.right)
+            else:
+                ret = False
+        return ret
 
     def insert(self, value):
         '''
@@ -103,14 +121,22 @@ class BST(BinaryTree):
     def find_smallest(self):
         '''
         Returns the smallest value in the tree.
-
-        FIXME:
-        Implement this function.
-
-        HINT:
-        Create a recursive staticmethod helper function,
-        similar to how the insert and find functions have recursive helpers.
         '''
+        if self.root is None:
+            raise ValueError('Nothing in tree')
+        else:
+            return BST._find_smallest(self.root)
+
+    @staticmethod
+    def _find_smallest(node):
+        '''
+        This is a helper function for find_smallest and not intended to be called directly by the user.
+        '''
+        assert node is not None
+        if node.left is None:
+            return node.value
+        else:
+            return BST._find_smallest(node.left)
 
     def find_largest(self):
         '''
@@ -120,7 +146,7 @@ class BST(BinaryTree):
         Implement this function.
 
         HINT:
-        Create a recursive staticmethod helper function.
+        Follow the pattern of the _find_smallest function.
         '''
 
     def remove(self, value):
@@ -132,8 +158,7 @@ class BST(BinaryTree):
         Implement this function.
 
         HINT:
-        You must have find_smallest/find_largest working correctly
-        before you can implement this function.
+        You should have everything else working before you implement this function.
 
         HINT:
         Use a recursive helper function.
@@ -145,4 +170,7 @@ class BST(BinaryTree):
 
         FIXME:
         Implement this function.
+
+        HINT:
+        See the insert_list function.
         '''

@@ -57,6 +57,28 @@ def test__BST_is_bst_satisified5():
     bst.root.right.right = Node(3)
     assert bst.is_bst_satisfied()
 
+def test__BST_is_bst_satisified6():
+    bst = BST()
+    bst.root = Node(0)
+    bst.root.left = Node(-2)
+    bst.root.left.left = Node(-3)
+    bst.root.left.right = Node(-1)
+    bst.root.right = Node(2)
+    bst.root.right.left = Node(-1)
+    bst.root.right.right = Node(3)
+    assert not bst.is_bst_satisfied()
+
+def test__BST_is_bst_satisified7():
+    bst = BST()
+    bst.root = Node(0)
+    bst.root.left = Node(-2)
+    bst.root.left.left = Node(-3)
+    bst.root.left.right = Node(1)
+    bst.root.right = Node(2)
+    bst.root.right.left = Node(1)
+    bst.root.right.right = Node(3)
+    assert not bst.is_bst_satisfied()
+
 ################################################################################
 
 import random
