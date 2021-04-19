@@ -68,6 +68,14 @@ class Heap():
         Implement this function.
 
         HINT:
+        The pseudo code is
+        1. Find the next position in the tree using the binary representation of the total number of nodes
+            1. You will have to explicitly store the size of your heap in a variable (rather than compute it) to maintain the O(log n) runtime
+            1. See https://stackoverflow.com/questions/18241192/implement-heap-using-a-binary-tree for hints
+        1. Add `value` into the next position
+        1. Recursively swap value with its parent until the heap property is satisfied
+
+        HINT:
         Create a @staticmethod helper function,
         following the same pattern used in the BST and AVLTree insert functions.
         '''
@@ -97,7 +105,13 @@ class Heap():
         Implement this function.
 
         HINT:
-        I created two @staticmethod helper functions: _trickle and _remove_bottom_right.
+        The pseudocode is
+        1. remove the bottom right node from the tree
+        2. replace the root node with what was formerly the bottom right
+        3. "trickle down" the root node: recursively swap it with its largest child until the heap property is satisfied
+
+        HINT:
+        I created two @staticmethod helper functions: _remove_bottom_right and _trickle.
         It's possible to do it with only a single helper (or no helper at all),
         but I personally found dividing up the code into two made the most sense.
         '''
