@@ -98,6 +98,7 @@ class FibIter:
             self.currNum = self.FibNum
         return self.FibNum
 
+
 def fib_yield(n=None):
     '''
     This function returns a generator that computes the first n fibonacci numbers.
@@ -110,4 +111,3 @@ def fib_yield(n=None):
                 yield next(_iter)
             except StopIteration:
                 break
-
