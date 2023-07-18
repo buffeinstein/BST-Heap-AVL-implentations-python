@@ -111,5 +111,3 @@ def fib_yield(n=None):
                 yield next(_iter)
             except StopIteration:
                 break
-
-#test
