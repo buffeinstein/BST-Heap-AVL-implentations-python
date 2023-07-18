@@ -113,10 +113,10 @@ class BinaryTree():
         FIXME:
         Implement this function by modifying the _print functions above.
         '''
-        if start: 
+        if start:
             traversal.append(start.value)
             traversal = self.preorder(start.left, traversal)
-            traversal = self.preorder(start.right, traversal) 
+            traversal = self.preorder(start.right, traversal)
         return traversal
 
     def inorder(self, start, traversal):
@@ -130,7 +130,6 @@ class BinaryTree():
             traversal = self.inorder(start.right, traversal)
         return traversal
 
- 
     def postorder(self, start, traversal):
         '''
         FIXME:
@@ -140,7 +139,7 @@ class BinaryTree():
             traversal = self.postorder(start.left, traversal)
             traversal = self.postorder(start.right, traversal)
             traversal.append(start.value)
-        return traversal 
+        return traversal
 
     def __len__(self):
         '''
@@ -148,7 +147,6 @@ class BinaryTree():
         Recall that `tree.__len__()` will desugar to `size(len)`.
         '''
         return BinaryTree.__len__helper(self.root)
-        #could also reference the len helper function with self.__len__helper(self.root)
 
     @staticmethod
     def __len__helper(node):
@@ -164,13 +162,13 @@ class BinaryTree():
         return the sum of these three steps
         '''
         ret = 1
-        if node == None: 
+        if node is None:
             return 0
         if node.left:
-            ret +=BinaryTree. __len__helper(node.left)
-        if node.right: 
+            ret += BinaryTree. __len__helper(node.left)
+        if node.right:
             ret += BinaryTree.__len__helper(node.right)
-        
+
         return ret
 
     def height(self):
