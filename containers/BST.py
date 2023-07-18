@@ -71,9 +71,8 @@ class BST(BinaryTree):
         You should use the _ prefixed methods because those are static methods just like this one.
         '''
 
-
     def insert(self, value):
-        ''' 
+        '''
         Inserts value into the BST.
 
         FIXME:
@@ -176,7 +175,7 @@ class BST(BinaryTree):
             return node.value
         else:
             return BST._find_largest(node.right)
- 
+
     def remove(self, value):
         '''
         Removes value from the BST.
