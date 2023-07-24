@@ -18,6 +18,7 @@ class AVLTree(BST):
     def is_avl_satisfied(self):
         return AVLTree._is_avl_satisfied(self.root)
 
+    @staticmethod
     def _is_avl_satisfied(node):
         if not node:
             return True
@@ -56,15 +57,15 @@ class AVLTree(BST):
 
     @staticmethod
     def _rebalance(node):
-        if node == None: 
-            return 
-        if AVLTree._balance_factor(node) <= -2: 
+        if node is None:
+            return
+        if AVLTree._balance_factor(node) <= -2:
             if AVLTree._balance_factor(node.right) > 0:
                 AVLTree._right_rotate(node.right)
                 AVLTree._left_rotate(node)
             else:
                 AVLTree._left_rotate(node)
-        if AVLTree._balance_factor(node) >= 2: 
+        if AVLTree._balance_factor(node) >= 2:
             if AVLTree._balance_factor(node.right) < 0:
                 AVLTree._left_rotate(node.left)
                 AVLTree._right_rotate(node)
@@ -72,19 +73,16 @@ class AVLTree(BST):
                 AVLTree._right_rotate(node)
         if node.left:
             AVLTree._rebalance(node.left)
-        if node.right: 
-            AVLTree._rebalance(node.right) 
+        if node.right:
+            AVLTree._rebalance(node.right)
 
     def insert(self, value):
         if self.root:
             AVLTree._insert(self.root, value)
             AVLTree._rebalance(self.root)
-            #replace with BST._insert
-            #AVLTree._rebalance(node)
         else:
             self.root = Node(value)
         
-
     @staticmethod
     def _insert(node, value): 
         if not node:
@@ -101,7 +99,7 @@ class AVLTree(BST):
                 node.right = Node(value)
         AVLTree._rebalance(node)
 
-    def insert_list(self, xs): 
+    def insert_list(self, xs):
         if len(xs) != 0:
-            for num in xs: 
+            for num in xs:
                 self.insert(num)
