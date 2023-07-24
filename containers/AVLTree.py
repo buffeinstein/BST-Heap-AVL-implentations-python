@@ -82,9 +82,9 @@ class AVLTree(BST):
             AVLTree._rebalance(self.root)
         else:
             self.root = Node(value)
-        
+
     @staticmethod
-    def _insert(node, value): 
+    def _insert(node, value):
         if not node:
             node.value = Node(value)
         if value < node.value:
