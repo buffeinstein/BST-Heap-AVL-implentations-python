@@ -14,14 +14,14 @@ class Heap(BinaryTree):
 
     def __init__(self, xs=None):
         self.root = None
-        if xs is not None: 
+        if xs is not None:
             Heap.insert_list(self, xs)
 
     def __repr__(self):
         return type(self).__name__ + '(' + str(self.to_list('inorder')) + ')'
 
     def is_heap_satisfied(self):
-        if len(self) == 1: 
+        if len(self) == 1:
             return True
         if self.root:
             return Heap._is_heap_satisfied(self.root)
@@ -30,14 +30,13 @@ class Heap(BinaryTree):
     @staticmethod
     def _is_heap_satisfied(node):
         ret = True
-        if node.left: 
+        if node.left:
             ret &= node.value <= node.left.value
             ret &= Heap._is_heap_satisfied(node.left)
-        if node.right: 
+        if node.right:
             ret &= node.value <= node.right.value
             ret &= Heap._is_heap_satisfied(node.right)
         return ret
-           
 
     def insert(self, value):
         self.num_nodes = 1 + len(self)
@@ -74,13 +73,13 @@ class Heap(BinaryTree):
     def remove_min(self):
         if len(self) == 0:
             return
-        if len(self) == 1: 
+        if len(self) == 1:
             self.root = None
             return
         self.num_nodes = len(self)
         binary_str = bin(self.num_nodes)[3:]
         self.root.value = Heap._remove_bottom_right(self.root, binary_str)
-        Heap._trickle_down(self.root) 
+        Heap._trickle_down(self.root)
         '''
         Removes the minimum value from the Heap.
         If the heap is empty, it does nothing.
@@ -97,13 +96,13 @@ class Heap(BinaryTree):
         '''
         
     @staticmethod
-    def _remove_bottom_right(node, binary_str): 
+    def _remove_bottom_right(node, binary_str):
         if binary_str[0] == '0':
-            if len(binary_str) == 1: 
+            if len(binary_str) == 1:
                 remove_bottom = node.left.value
                 node.left = None
                 return remove_bottom
-            else: 
+            else:
                 return Heap._remove_bottom_right(node.left, binary_str[1:])
         elif binary_str[0] == '1':
             if len(binary_str) == 1:
@@ -114,30 +113,25 @@ class Heap(BinaryTree):
                 return Heap._remove_bottom_right(node.right, binary_str[1:])
 
     @staticmethod
-    def _trickle_down(node): 
+    def _trickle_down(node):
         print("trickle_down activated")
-        if node.right is not None and node.left is not None: 
-            if node.right.value >= node.left.value: 
+        if node.right is not None and node.left is not None:
+            if node.right.value >= node.left.value:
                 print("node.right.value:", node.right.value, ">= node.left.value", node.left.value)
-                if node.value >= node.right.value or node.value >= node.left.value: 
-                    #have to check both in case it's in between them, making only one child not 
-                    #fulfilling the heap condition
-                    #swap node with left to put smallest in center
+                if node.value >= node.right.value or node.value >= node.left.value:
                     node.value, node.left.value = node.left.value, node.value
                     print("swapped node and left")
-            elif node.left.value > node.right.value: 
+            elif node.left.value > node.right.value:
                 if node.value >= node.left.value or node.value > node.right.value:
-                    #swap node with right
                     node.value, node.right.value = node.right.value, node.value
             Heap._trickle_down(node.left)
             Heap._trickle_down(node.right)
-        elif node.right is not None: 
+        elif node.right is not None:
             if node.value > node.right.value:
                 #swap with right
                 node.value, node.right.value = node.right.value, node.value
             Heap._trickle_down(node.right)
-        elif node.left is not None: 
-            if node.value > node.left.value: 
-                #swap with left 
+        elif node.left is not None:
+            if node.value > node.left.value:
                 node.value, node.left.value = node.left.value, node.value
             Heap._trickle_down(node.left)
