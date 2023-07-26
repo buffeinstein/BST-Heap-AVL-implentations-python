@@ -94,7 +94,7 @@ class Heap(BinaryTree):
         3. "trickle down" the root node: recursively swap it with its largest child until the heap property is satisfied
 
         '''
-        
+
     @staticmethod
     def _remove_bottom_right(node, binary_str):
         if binary_str[0] == '0':
@@ -128,7 +128,6 @@ class Heap(BinaryTree):
             Heap._trickle_down(node.right)
         elif node.right is not None:
             if node.value > node.right.value:
-                #swap with right
                 node.value, node.right.value = node.right.value, node.value
             Heap._trickle_down(node.right)
         elif node.left is not None:
