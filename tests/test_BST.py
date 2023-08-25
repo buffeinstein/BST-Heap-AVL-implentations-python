@@ -112,7 +112,7 @@ def test__BST___init__(xs):
     bst = BST(xs)
     assert bst.is_bst_satisfied()
 
-
+print ("here")
 @given(xs=ints)
 def test__BST___contains__1(xs):
     '''
@@ -324,11 +324,7 @@ def test__BST_iterable_2(xs):
 
 
 @given(xs=ints)
-def test__BST_eq(xs):
-    '''
-    This test is essentially the same as the previous one,
-    but tests the == operator specifically.
-    '''
+def test__BST_iterable_2(xs):
     xs = list(set(xs))
 
     xs1 = copy.copy(xs)
@@ -340,3 +336,4 @@ def test__BST_eq(xs):
     bst2 = BST(xs2)
     
     assert bst1 == bst2
+    assert list(bst1) == list(bst2)
