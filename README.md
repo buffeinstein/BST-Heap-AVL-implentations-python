@@ -1,7 +1,6 @@
 # containers
 
 Build status:
-<<<<<<< HEAD
 
 1. [![](https://github.com/buffeinstein/containers/workflows/tests-heap/badge.svg)](https://github.com/buffeinstein/containers/actions?query=workflow%3Atests-heap)
 1. [![](https://github.com/buffeinstein/containers/workflows/tests-BST/badge.svg)](https://github.com/buffeinstein/containers/actions?query=workflow%3Atests-BST)
